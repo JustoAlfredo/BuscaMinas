@@ -17,7 +17,10 @@ public class VentanaBuscaMinas extends javax.swing.JFrame {
     private int minas[][];
     private int fila;
     private int columna;
-    
+    private int cantidadMinas;
+    private boolean marcarMina;
+    private int contador;
+   
     public VentanaBuscaMinas() {
         initComponents();
         this.minas = new int [5][5];
@@ -26,7 +29,9 @@ public class VentanaBuscaMinas extends javax.swing.JFrame {
         
         this.fila = -1;
         this.columna = -1;
-        
+        this.cantidadMinas = 0;
+        this.marcarMina=false;
+        this.contador=0;
     }
 
     /**
@@ -66,6 +71,7 @@ public class VentanaBuscaMinas extends javax.swing.JFrame {
         btn25 = new javax.swing.JButton();
         txtMarcadorTiempo = new javax.swing.JTextField();
         btnReiniciar = new javax.swing.JButton();
+        cboxSeñalarMina = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -231,19 +237,20 @@ public class VentanaBuscaMinas extends javax.swing.JFrame {
             }
         });
 
+        cboxSeñalarMina.setText("Señalar Mina");
+        cboxSeñalarMina.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboxSeñalarMinaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(17, 17, 17)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(txtMarcadorMinas, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnReiniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtMarcadorTiempo, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btn21, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -254,6 +261,13 @@ public class VentanaBuscaMinas extends javax.swing.JFrame {
                         .addComponent(btn24, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btn25, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cboxSeñalarMina)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(txtMarcadorMinas, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(19, 19, 19)
+                        .addComponent(btnReiniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtMarcadorTiempo, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(btn16, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -342,7 +356,9 @@ public class VentanaBuscaMinas extends javax.swing.JFrame {
                     .addComponent(btn23, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn24, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn25, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(cboxSeñalarMina)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -352,186 +368,420 @@ public class VentanaBuscaMinas extends javax.swing.JFrame {
         this.fila = 0;
         this.columna = 0;
         
-        mensaje(buscarMina());
+        if(buscarMina()){
+            mensaje(true);
+            this.btn1.setText("X");
+            explosion();
+        }else{
+            this.btn1.setText(String.valueOf(buscarAlrededorMina(0,2,3)));
+            this.cantidadMinas = 0;
+            this.contador = this.contador +1;
+            monitorearResultado();
+        }
+        
     }//GEN-LAST:event_btn1ActionPerformed
 
     private void btn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn2ActionPerformed
         this.fila = 0;
         this.columna = 1;
         
-        mensaje(buscarMina());
+        if(buscarMina()){
+            mensaje(true);
+            this.btn2.setText("X");
+            explosion();
+        }else{
+            this.btn2.setText(String.valueOf(buscarAlrededorMina(0,2,3)));
+            this.cantidadMinas = 0;
+            this.contador = this.contador +1;
+            monitorearResultado();
+        }
     }//GEN-LAST:event_btn2ActionPerformed
 
     private void btn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn3ActionPerformed
         this.fila = 0;
         this.columna = 2;
         
-        mensaje(buscarMina());
+        if(buscarMina()){
+            mensaje(true);
+            this.btn3.setText("X");
+            explosion();
+        }else{
+            this.btn3.setText(String.valueOf(buscarAlrededorMina(0,2,3)));
+            this.cantidadMinas = 0;
+            this.contador = this.contador +1;
+            monitorearResultado();
+        }
     }//GEN-LAST:event_btn3ActionPerformed
 
     private void btn4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn4ActionPerformed
         this.fila = 0;
         this.columna = 3;
         
-        mensaje(buscarMina());
+        if(buscarMina()){
+            mensaje(true);
+            this.btn4.setText("X");
+            explosion();
+        }else{
+            this.btn4.setText(String.valueOf(buscarAlrededorMina(0,2,3)));
+            this.cantidadMinas = 0;
+            this.contador = this.contador +1;
+            monitorearResultado();
+        }
     }//GEN-LAST:event_btn4ActionPerformed
 
     private void btn5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn5ActionPerformed
         this.fila = 0;
         this.columna = 4;
         
-        mensaje(buscarMina());
+        if(buscarMina()){
+            mensaje(true);
+            this.btn5.setText("X");
+            explosion();
+        }else{
+            this.btn5.setText(String.valueOf(buscarAlrededorMina(0,2,3)));
+            this.cantidadMinas = 0;
+            this.contador = this.contador +1;
+            monitorearResultado();
+        }
     }//GEN-LAST:event_btn5ActionPerformed
 
     private void btn6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn6ActionPerformed
         this.fila = 1;
         this.columna = 0;
         
-        mensaje(buscarMina());
+        if(buscarMina()){
+            mensaje(true);
+            this.btn6.setText("X");
+            explosion();
+        }else{
+            this.btn6.setText(String.valueOf(buscarAlrededorMina(1,2,3)));
+            this.cantidadMinas = 0;
+            this.contador = this.contador +1;
+            monitorearResultado();
+        }
     }//GEN-LAST:event_btn6ActionPerformed
 
     private void btn7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn7ActionPerformed
         this.fila = 1;
         this.columna = 1;
         
-        mensaje(buscarMina());
+        if(buscarMina()){
+            mensaje(true);
+            this.btn7.setText("X");
+            explosion();
+        }else{
+            this.btn7.setText(String.valueOf(buscarAlrededorMina(1,2,3)));
+            this.cantidadMinas = 0;
+            this.contador = this.contador +1;
+            monitorearResultado();
+        }
     }//GEN-LAST:event_btn7ActionPerformed
 
     private void btn8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn8ActionPerformed
        this.fila = 1;
        this.columna = 2;
         
-        mensaje(buscarMina());
+        if(buscarMina()){
+            mensaje(true);
+            this.btn8.setText("X");
+            explosion();
+        }else{
+            this.btn8.setText(String.valueOf(buscarAlrededorMina(1,2,3)));
+            this.cantidadMinas = 0;
+            this.contador = this.contador +1;
+            monitorearResultado();
+        }
     }//GEN-LAST:event_btn8ActionPerformed
 
     private void btn9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn9ActionPerformed
         this.fila = 1;
        this.columna = 3;
         
-        mensaje(buscarMina());
+       if(buscarMina()){
+            mensaje(true);
+            this.btn9.setText("X");
+            explosion();
+        }else{
+            this.btn9.setText(String.valueOf(buscarAlrededorMina(1,2,3)));
+            this.cantidadMinas = 0;
+            this.contador = this.contador +1;
+            monitorearResultado();
+        }
     }//GEN-LAST:event_btn9ActionPerformed
 
     private void btn10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn10ActionPerformed
        this.fila = 1;
        this.columna = 4;
         
-        mensaje(buscarMina());
+       if(buscarMina()){
+            mensaje(true);
+            this.btn10.setText("X");
+            explosion();
+        }else{
+            this.btn10.setText(String.valueOf(buscarAlrededorMina(1,2,3)));
+            this.cantidadMinas = 0;
+            this.contador = this.contador +1;
+            monitorearResultado();
+        }
     }//GEN-LAST:event_btn10ActionPerformed
 
     private void btn11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn11ActionPerformed
         this.fila = 2;
        this.columna = 0;
         
-        mensaje(buscarMina());
+       if(buscarMina()){
+            mensaje(true);
+            this.btn11.setText("X");
+            explosion();
+        }else{
+            this.btn11.setText(String.valueOf(buscarAlrededorMina(1,2,3)));
+            this.cantidadMinas = 0;
+            this.contador = this.contador +1;
+            monitorearResultado();
+        }
     }//GEN-LAST:event_btn11ActionPerformed
 
     private void btn12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn12ActionPerformed
         this.fila = 2;
        this.columna = 1;
         
-        mensaje(buscarMina());
+        if(buscarMina()){
+            mensaje(true);
+            this.btn12.setText("X");
+            explosion();
+        }else{
+            this.btn12.setText(String.valueOf(buscarAlrededorMina(1,2,3)));
+            this.cantidadMinas = 0;
+            this.contador = this.contador +1;
+            monitorearResultado();
+        }
     }//GEN-LAST:event_btn12ActionPerformed
 
     private void btn13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn13ActionPerformed
         this.fila = 2;
        this.columna = 2;
         
-        mensaje(buscarMina());
+        if(buscarMina()){
+            mensaje(true);
+            this.btn13.setText("X");
+            explosion();
+        }else{
+            this.btn13.setText(String.valueOf(buscarAlrededorMina(1,2,3)));
+            this.cantidadMinas = 0;
+            this.contador = this.contador +1;
+            monitorearResultado();
+        }
     }//GEN-LAST:event_btn13ActionPerformed
 
     private void btn14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn14ActionPerformed
         this.fila = 2;
        this.columna = 3;
         
-        mensaje(buscarMina());
+        if(buscarMina()){
+            mensaje(true);
+            this.btn14.setText("X");
+            explosion();
+        }else{
+            this.btn14.setText(String.valueOf(buscarAlrededorMina(1,2,3)));
+            this.cantidadMinas = 0;
+            this.contador = this.contador +1;
+            monitorearResultado();
+        }
     }//GEN-LAST:event_btn14ActionPerformed
 
     private void btn15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn15ActionPerformed
         this.fila = 2;
        this.columna = 4;
         
-        mensaje(buscarMina());
+        if(buscarMina()){
+            mensaje(true);
+            this.btn15.setText("X");
+            explosion();
+        }else{
+            this.btn15.setText(String.valueOf(buscarAlrededorMina(1,2,3)));
+            this.cantidadMinas = 0;
+            this.contador = this.contador +1;
+            monitorearResultado();
+        }
     }//GEN-LAST:event_btn15ActionPerformed
 
     private void btn16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn16ActionPerformed
         this.fila = 3;
        this.columna = 0;
         
-        mensaje(buscarMina());
+       if(buscarMina()){
+            mensaje(true);
+            this.btn16.setText("X");
+            explosion();
+        }else{
+            this.btn16.setText(String.valueOf(buscarAlrededorMina(1,2,3)));
+            this.cantidadMinas = 0;
+            this.contador = this.contador +1;
+            monitorearResultado();
+        }
     }//GEN-LAST:event_btn16ActionPerformed
 
     private void btn17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn17ActionPerformed
         this.fila = 3;
        this.columna = 1;
         
-        mensaje(buscarMina());
+       if(buscarMina()){
+            mensaje(true);
+            this.btn17.setText("X");
+            explosion();
+        }else{
+            this.btn17.setText(String.valueOf(buscarAlrededorMina(1,2,3)));
+            this.cantidadMinas = 0;
+            this.contador = this.contador +1;
+            monitorearResultado();
+        }
     }//GEN-LAST:event_btn17ActionPerformed
 
     private void btn18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn18ActionPerformed
         this.fila = 3;
        this.columna = 2;
         
-        mensaje(buscarMina());
+        if(buscarMina()){
+            mensaje(true);
+            this.btn18.setText("X");
+            explosion();
+        }else{
+            this.btn18.setText(String.valueOf(buscarAlrededorMina(1,2,3)));
+            this.cantidadMinas = 0;
+            this.contador = this.contador +1;
+            monitorearResultado();
+        }
     }//GEN-LAST:event_btn18ActionPerformed
 
     private void btn19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn19ActionPerformed
         this.fila = 3;
        this.columna = 3;
         
-        mensaje(buscarMina());
+       if(buscarMina()){
+            mensaje(true);
+            this.btn19.setText("X");
+            explosion();
+        }else{
+            this.btn19.setText(String.valueOf(buscarAlrededorMina(1,2,3)));
+            this.cantidadMinas = 0;
+            this.contador = this.contador +1;
+            monitorearResultado();
+        }
     }//GEN-LAST:event_btn19ActionPerformed
 
     private void btn20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn20ActionPerformed
        this.fila = 3;
        this.columna = 4;
         
-        mensaje(buscarMina());
+       if(buscarMina()){
+            mensaje(true);
+            this.btn20.setText("X");
+            explosion();
+        }else{
+            this.btn20.setText(String.valueOf(buscarAlrededorMina(1,2,3)));
+            this.cantidadMinas = 0;
+            this.contador = this.contador +1;
+            monitorearResultado();
+        }
     }//GEN-LAST:event_btn20ActionPerformed
 
     private void btn21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn21ActionPerformed
         this.fila = 4;
        this.columna = 0;
         
-        mensaje(buscarMina());
+       if(buscarMina()){
+            mensaje(true);
+            this.btn21.setText("X");
+            explosion();
+        }else{
+            this.btn21.setText(String.valueOf(buscarAlrededorMina(1,2,3)));
+            this.cantidadMinas = 0;
+            this.contador = this.contador +1;
+            monitorearResultado();
+        }
     }//GEN-LAST:event_btn21ActionPerformed
 
     private void btn22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn22ActionPerformed
          this.fila = 4;
        this.columna = 1;
         
-        mensaje(buscarMina());
+       if(buscarMina()){
+            mensaje(true);
+            this.btn22.setText("X");
+            explosion();
+        }else{
+            this.btn22.setText(String.valueOf(buscarAlrededorMina(1,2,3)));
+            this.cantidadMinas = 0;
+            this.contador = this.contador +1;
+            monitorearResultado();
+        }
     }//GEN-LAST:event_btn22ActionPerformed
 
     private void btn23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn23ActionPerformed
          this.fila = 4;
        this.columna = 2;
         
-        mensaje(buscarMina());
+       if(buscarMina()){
+            mensaje(true);
+            this.btn23.setText("X");
+            explosion();
+        }else{
+            this.btn23.setText(String.valueOf(buscarAlrededorMina(1,2,3)));
+            this.cantidadMinas = 0;
+            this.contador = this.contador +1;
+            monitorearResultado();
+        }
     }//GEN-LAST:event_btn23ActionPerformed
 
     private void btn24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn24ActionPerformed
          this.fila = 4;
        this.columna = 3;
         
-        mensaje(buscarMina());
+       if(buscarMina()){
+            mensaje(true);
+            this.btn24.setText("X");
+            explosion();
+        }else{
+            this.btn24.setText(String.valueOf(buscarAlrededorMina(1,2,3)));
+            this.cantidadMinas = 0;
+            this.contador = this.contador +1;
+            monitorearResultado();
+        }
     }//GEN-LAST:event_btn24ActionPerformed
 
     private void btn25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn25ActionPerformed
          this.fila = 4;
        this.columna = 4;
         
-        mensaje(buscarMina());
+       if(buscarMina()){
+            mensaje(true);
+            this.btn25.setText("X");
+            explosion();
+        }else{
+            this.btn25.setText(String.valueOf(buscarAlrededorMina(1,2,3)));
+            this.cantidadMinas = 0;
+            this.contador = this.contador +1;
+            monitorearResultado();
+        }
     }//GEN-LAST:event_btn25ActionPerformed
 
     private void btnReiniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReiniciarActionPerformed
         reiniciar();
     }//GEN-LAST:event_btnReiniciarActionPerformed
+
+    private void cboxSeñalarMinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboxSeñalarMinaActionPerformed
+        if (this.marcarMina==true){
+            this.marcarMina=false;
+        }else{
+            this.marcarMina = true;
+        }
+    }//GEN-LAST:event_cboxSeñalarMinaActionPerformed
     
     private void cargaMinas(){
         
         //fila uno
-        this.minas [0][0] = 0;
-        this.minas [0][1] = 0;
+       /* this.minas [0][0] = 0;
+        this.minas [0][1] = 1;
         this.minas [0][2] = 0;
         this.minas [0][3] = 0;
         this.minas [0][4] = 0;
@@ -551,8 +801,27 @@ public class VentanaBuscaMinas extends javax.swing.JFrame {
         this.minas [3][0] = 0;
         this.minas [3][1] = 1;
         this.minas [3][2] = 0;
-        this.minas [3][3] = 0;
+        this.minas [3][3] = 1;
         this.minas [3][4] = 0;
+        
+        this.minas [4][0] = 0;
+        this.minas [4][1] = 1;
+        this.minas [4][2] = 0;
+        this.minas [4][3] = 1;
+        this.minas [4][4] = 0;*/
+        int numDeMinas = 0;
+        
+        for(int i=0; i<this.minas.length;i++){
+            for(int j=0; j<this.minas[0].length;j++){
+                if(Math.random()<0.200000){
+                    this.minas[i][j]=1;
+                    numDeMinas = numDeMinas +1;
+                }
+            }
+        }
+        
+        this.txtMarcadorMinas.setText(String.valueOf(numDeMinas));
+        
     }
     
     private boolean buscarMina(){
@@ -564,6 +833,87 @@ public class VentanaBuscaMinas extends javax.swing.JFrame {
         return false;
     }
     
+    private int buscarAlrededorMina(int paso1, int paso2, int paso3){
+        int columna1 = this.columna;
+        if(paso1 == 1){
+            pasoUno(columna1);
+        }
+        if(paso2 == 2){
+            pasoDos(columna1);
+        }
+        
+        if(paso3==3){
+            pasoTres(columna1);
+        }
+        
+        return cantidadMinas;
+    }
+    
+    private void pasoUno(int c){
+        
+            if ((this.fila-1)>=0){
+                
+                if((this.columna-1)>=0){
+                    if(this.minas[this.fila-1][this.columna-1] == 1){
+                            cantidadMinas = cantidadMinas +1;
+                    }
+                }
+                if(this.minas[this.fila-1][this.columna] == 1){
+                    cantidadMinas = cantidadMinas + 1;
+                }
+                
+                if((this.columna+1)<this.minas.length){
+                    if(this.minas[this.fila-1][this.columna+1] == 1){
+                       cantidadMinas = cantidadMinas + 1;
+                    }
+                }
+            }
+    }
+    
+    private void pasoDos(int c){
+        
+           if((this.fila+1)<this.minas.length){
+                
+               if((this.columna-1)>=0){
+                    if(this.minas[this.fila+1][this.columna-1] == 1){
+                             cantidadMinas = cantidadMinas +1;
+                     }
+               }
+               
+               if(this.minas[this.fila+1][this.columna] == 1){
+                     cantidadMinas = cantidadMinas + 1;
+               }
+               
+               if((this.columna+1)<this.minas.length){
+                    if(this.minas[this.fila+1][this.columna+1] == 1){
+                            cantidadMinas = cantidadMinas + 1;
+                    }
+               }
+           }
+
+    }
+    
+    private void pasoTres(int c){
+        
+                if((this.columna-1)>=0){
+
+                    if(this.minas[this.fila][this.columna-1] == 1){
+                        cantidadMinas = cantidadMinas +1;
+                    }
+                }
+            
+            
+                if(this.minas[this.fila][this.columna] == 1){
+                    cantidadMinas = cantidadMinas + 1;
+                }
+            
+                if((this.columna+1)<this.minas.length){
+                    if(this.minas[this.fila][this.columna+1] == 1){
+                        cantidadMinas = cantidadMinas + 1;
+                    }
+                }
+    }
+
     private void mensaje(boolean mina){
         if (mina == true){
             JOptionPane.showMessageDialog(null,"Perdio","Busca minas",JOptionPane.ERROR_MESSAGE);
@@ -573,6 +923,158 @@ public class VentanaBuscaMinas extends javax.swing.JFrame {
     private void reiniciar(){
         this.fila = -1;
         this.columna = -1;
+        this.contador = 0;
+        limpiarMatrizMinas();
+        limpiarBotones();
+        cargaMinas();
+    }
+    
+    private void limpiarMatrizMinas(){
+        for(int i=0; i<this.minas.length;i++){
+            for(int j=0; j<this.minas[0].length;j++){
+             this.minas[i][j]=0;
+            }
+        }
+    }
+    
+    private void limpiarBotones(){
+        this.btn1.setText("");
+        this.btn2.setText("");
+        this.btn3.setText("");
+        this.btn4.setText("");
+        this.btn5.setText("");
+        this.btn6.setText("");
+        this.btn7.setText("");
+        this.btn8.setText("");
+        this.btn9.setText("");
+        this.btn10.setText("");
+        this.btn11.setText("");
+        this.btn12.setText("");
+        this.btn13.setText("");
+        this.btn14.setText("");
+        this.btn15.setText("");
+        this.btn16.setText("");
+        this.btn17.setText("");
+        this.btn18.setText("");
+        this.btn19.setText("");
+        this.btn20.setText("");
+        this.btn21.setText("");
+        this.btn22.setText("");
+        this.btn23.setText("");
+        this.btn24.setText("");
+        this.btn25.setText("");
+    }
+    
+    private void explosion(){
+        if(this.minas [0][0] == 1){
+            this.btn1.setText("X");
+        }
+        
+        if(this.minas [0][1] == 1){
+            this.btn2.setText("X");
+        }
+        
+        if(this.minas [0][2] == 1){
+            this.btn3.setText("X");
+        }
+        
+        if(this.minas [0][3] == 1){
+            this.btn4.setText("X");
+        }
+        
+        if(this.minas [0][4] == 1){
+            this.btn5.setText("X");
+        }
+        
+        //SEGUNDA FILA
+        if(this.minas [1][0] == 1){
+            this.btn6.setText("X");
+        }
+        
+        if(this.minas [1][1] == 1){
+            this.btn7.setText("X");
+        }
+        
+        if(this.minas [1][2] == 1){
+            this.btn8.setText("X");
+        }
+        
+        if(this.minas [1][3] == 1){
+            this.btn9.setText("X");
+        }
+        
+        if(this.minas [1][4] == 1){
+            this.btn10.setText("X");
+        }
+        
+        //TERCERA FILA
+        if(this.minas [2][0] == 1){
+            this.btn11.setText("X");
+        }
+        
+        if(this.minas [2][1] == 1){
+            this.btn12.setText("X");
+        }
+        
+        if(this.minas [2][2] == 1){
+            this.btn13.setText("X");
+        }
+        
+        if(this.minas [2][3] == 1){
+            this.btn14.setText("X");
+        }
+        
+        if(this.minas [2][4] == 1){
+            this.btn15.setText("X");
+        }
+        
+        //CUARTO FILA
+        if(this.minas [3][0] == 1){
+            this.btn16.setText("X");
+        }
+        
+        if(this.minas [3][1] == 1){
+            this.btn17.setText("X");
+        }
+        
+        if(this.minas [3][2] == 1){
+            this.btn18.setText("X");
+        }
+        
+        if(this.minas [3][3] == 1){
+            this.btn19.setText("X");
+        }
+        
+        if(this.minas [3][4] == 1){
+            this.btn20.setText("X");
+        }
+        
+        //QUINTO FILA
+        if(this.minas [4][0] == 1){
+            this.btn21.setText("X");
+        }
+        
+        if(this.minas [4][1] == 1){
+            this.btn22.setText("X");
+        }
+        
+        if(this.minas [4][2] == 1){
+            this.btn23.setText("X");
+        }
+        
+        if(this.minas [4][3] == 1){
+            this.btn24.setText("X");
+        }
+        
+        if(this.minas [4][4] == 1){
+            this.btn25.setText("X");
+        }
+    }
+    
+    private void monitorearResultado(){
+        if(this.contador==(25-Integer.parseInt(this.txtMarcadorMinas.getText()))){
+            JOptionPane.showMessageDialog(null,"Felicidades, Eres un ganador","Busca minas",JOptionPane.INFORMATION_MESSAGE);
+        }
     }
     /**
      * @param args the command line arguments
@@ -636,6 +1138,7 @@ public class VentanaBuscaMinas extends javax.swing.JFrame {
     private javax.swing.JButton btn8;
     private javax.swing.JButton btn9;
     private javax.swing.JButton btnReiniciar;
+    private javax.swing.JCheckBox cboxSeñalarMina;
     private javax.swing.JTextField txtMarcadorMinas;
     private javax.swing.JTextField txtMarcadorTiempo;
     // End of variables declaration//GEN-END:variables
