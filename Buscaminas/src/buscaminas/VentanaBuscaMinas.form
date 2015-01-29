@@ -40,7 +40,6 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="btn25" min="-2" pref="44" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="cboxSeñalarMina" min="-2" max="-2" attributes="0"/>
                   <Group type="102" attributes="0">
                       <Component id="txtMarcadorMinas" min="-2" pref="90" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
@@ -152,9 +151,7 @@
                   <Component id="btn24" alignment="0" min="-2" pref="35" max="-2" attributes="0"/>
                   <Component id="btn25" alignment="0" min="-2" pref="35" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="cboxSeñalarMina" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="24" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -301,18 +298,12 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnReiniciar">
       <Properties>
-        <Property name="text" type="java.lang.String" value="x"/>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/buscaminas/icon_carita_feliz.jpg"/>
+        </Property>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnReiniciarActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JCheckBox" name="cboxSe&#xf1;alarMina">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Se&#xf1;alar Mina"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cboxSe&#xf1;alarMinaActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

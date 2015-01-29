@@ -20,19 +20,20 @@ public class VentanaBuscaMinas extends javax.swing.JFrame {
     private int cantidadMinas;
     private boolean marcarMina;
     private int contador;
+    private int numMinas;
    
     public VentanaBuscaMinas() {
         initComponents();
         this.minas = new int [5][5];
-        
-        cargaMinas();
-        
         this.fila = -1;
         this.columna = -1;
         this.cantidadMinas = 0;
         this.marcarMina=false;
         this.contador=0;
-    }
+        this.numMinas = 6;
+        
+        cargaMinas();
+    } 
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -71,7 +72,6 @@ public class VentanaBuscaMinas extends javax.swing.JFrame {
         btn25 = new javax.swing.JButton();
         txtMarcadorTiempo = new javax.swing.JTextField();
         btnReiniciar = new javax.swing.JButton();
-        cboxSeñalarMina = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -230,17 +230,10 @@ public class VentanaBuscaMinas extends javax.swing.JFrame {
 
         txtMarcadorTiempo.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
 
-        btnReiniciar.setText("x");
+        btnReiniciar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buscaminas/icon_carita_feliz.jpg"))); // NOI18N
         btnReiniciar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnReiniciarActionPerformed(evt);
-            }
-        });
-
-        cboxSeñalarMina.setText("Señalar Mina");
-        cboxSeñalarMina.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cboxSeñalarMinaActionPerformed(evt);
             }
         });
 
@@ -261,7 +254,6 @@ public class VentanaBuscaMinas extends javax.swing.JFrame {
                         .addComponent(btn24, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btn25, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(cboxSeñalarMina)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(txtMarcadorMinas, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(19, 19, 19)
@@ -356,9 +348,7 @@ public class VentanaBuscaMinas extends javax.swing.JFrame {
                     .addComponent(btn23, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn24, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn25, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(cboxSeñalarMina)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         pack();
@@ -370,7 +360,6 @@ public class VentanaBuscaMinas extends javax.swing.JFrame {
         
         if(buscarMina()){
             mensaje(true);
-            this.btn1.setText("X");
             explosion();
         }else{
             this.btn1.setText(String.valueOf(buscarAlrededorMina(0,2,3)));
@@ -387,7 +376,6 @@ public class VentanaBuscaMinas extends javax.swing.JFrame {
         
         if(buscarMina()){
             mensaje(true);
-            this.btn2.setText("X");
             explosion();
         }else{
             this.btn2.setText(String.valueOf(buscarAlrededorMina(0,2,3)));
@@ -403,7 +391,6 @@ public class VentanaBuscaMinas extends javax.swing.JFrame {
         
         if(buscarMina()){
             mensaje(true);
-            this.btn3.setText("X");
             explosion();
         }else{
             this.btn3.setText(String.valueOf(buscarAlrededorMina(0,2,3)));
@@ -419,7 +406,6 @@ public class VentanaBuscaMinas extends javax.swing.JFrame {
         
         if(buscarMina()){
             mensaje(true);
-            this.btn4.setText("X");
             explosion();
         }else{
             this.btn4.setText(String.valueOf(buscarAlrededorMina(0,2,3)));
@@ -435,7 +421,6 @@ public class VentanaBuscaMinas extends javax.swing.JFrame {
         
         if(buscarMina()){
             mensaje(true);
-            this.btn5.setText("X");
             explosion();
         }else{
             this.btn5.setText(String.valueOf(buscarAlrededorMina(0,2,3)));
@@ -451,7 +436,6 @@ public class VentanaBuscaMinas extends javax.swing.JFrame {
         
         if(buscarMina()){
             mensaje(true);
-            this.btn6.setText("X");
             explosion();
         }else{
             this.btn6.setText(String.valueOf(buscarAlrededorMina(1,2,3)));
@@ -467,7 +451,6 @@ public class VentanaBuscaMinas extends javax.swing.JFrame {
         
         if(buscarMina()){
             mensaje(true);
-            this.btn7.setText("X");
             explosion();
         }else{
             this.btn7.setText(String.valueOf(buscarAlrededorMina(1,2,3)));
@@ -483,7 +466,6 @@ public class VentanaBuscaMinas extends javax.swing.JFrame {
         
         if(buscarMina()){
             mensaje(true);
-            this.btn8.setText("X");
             explosion();
         }else{
             this.btn8.setText(String.valueOf(buscarAlrededorMina(1,2,3)));
@@ -499,7 +481,6 @@ public class VentanaBuscaMinas extends javax.swing.JFrame {
         
        if(buscarMina()){
             mensaje(true);
-            this.btn9.setText("X");
             explosion();
         }else{
             this.btn9.setText(String.valueOf(buscarAlrededorMina(1,2,3)));
@@ -515,7 +496,6 @@ public class VentanaBuscaMinas extends javax.swing.JFrame {
         
        if(buscarMina()){
             mensaje(true);
-            this.btn10.setText("X");
             explosion();
         }else{
             this.btn10.setText(String.valueOf(buscarAlrededorMina(1,2,3)));
@@ -531,7 +511,6 @@ public class VentanaBuscaMinas extends javax.swing.JFrame {
         
        if(buscarMina()){
             mensaje(true);
-            this.btn11.setText("X");
             explosion();
         }else{
             this.btn11.setText(String.valueOf(buscarAlrededorMina(1,2,3)));
@@ -547,7 +526,6 @@ public class VentanaBuscaMinas extends javax.swing.JFrame {
         
         if(buscarMina()){
             mensaje(true);
-            this.btn12.setText("X");
             explosion();
         }else{
             this.btn12.setText(String.valueOf(buscarAlrededorMina(1,2,3)));
@@ -563,7 +541,6 @@ public class VentanaBuscaMinas extends javax.swing.JFrame {
         
         if(buscarMina()){
             mensaje(true);
-            this.btn13.setText("X");
             explosion();
         }else{
             this.btn13.setText(String.valueOf(buscarAlrededorMina(1,2,3)));
@@ -579,7 +556,6 @@ public class VentanaBuscaMinas extends javax.swing.JFrame {
         
         if(buscarMina()){
             mensaje(true);
-            this.btn14.setText("X");
             explosion();
         }else{
             this.btn14.setText(String.valueOf(buscarAlrededorMina(1,2,3)));
@@ -595,7 +571,6 @@ public class VentanaBuscaMinas extends javax.swing.JFrame {
         
         if(buscarMina()){
             mensaje(true);
-            this.btn15.setText("X");
             explosion();
         }else{
             this.btn15.setText(String.valueOf(buscarAlrededorMina(1,2,3)));
@@ -611,7 +586,6 @@ public class VentanaBuscaMinas extends javax.swing.JFrame {
         
        if(buscarMina()){
             mensaje(true);
-            this.btn16.setText("X");
             explosion();
         }else{
             this.btn16.setText(String.valueOf(buscarAlrededorMina(1,2,3)));
@@ -627,7 +601,6 @@ public class VentanaBuscaMinas extends javax.swing.JFrame {
         
        if(buscarMina()){
             mensaje(true);
-            this.btn17.setText("X");
             explosion();
         }else{
             this.btn17.setText(String.valueOf(buscarAlrededorMina(1,2,3)));
@@ -643,7 +616,6 @@ public class VentanaBuscaMinas extends javax.swing.JFrame {
         
         if(buscarMina()){
             mensaje(true);
-            this.btn18.setText("X");
             explosion();
         }else{
             this.btn18.setText(String.valueOf(buscarAlrededorMina(1,2,3)));
@@ -659,7 +631,6 @@ public class VentanaBuscaMinas extends javax.swing.JFrame {
         
        if(buscarMina()){
             mensaje(true);
-            this.btn19.setText("X");
             explosion();
         }else{
             this.btn19.setText(String.valueOf(buscarAlrededorMina(1,2,3)));
@@ -675,7 +646,6 @@ public class VentanaBuscaMinas extends javax.swing.JFrame {
         
        if(buscarMina()){
             mensaje(true);
-            this.btn20.setText("X");
             explosion();
         }else{
             this.btn20.setText(String.valueOf(buscarAlrededorMina(1,2,3)));
@@ -691,7 +661,6 @@ public class VentanaBuscaMinas extends javax.swing.JFrame {
         
        if(buscarMina()){
             mensaje(true);
-            this.btn21.setText("X");
             explosion();
         }else{
             this.btn21.setText(String.valueOf(buscarAlrededorMina(1,2,3)));
@@ -707,7 +676,6 @@ public class VentanaBuscaMinas extends javax.swing.JFrame {
         
        if(buscarMina()){
             mensaje(true);
-            this.btn22.setText("X");
             explosion();
         }else{
             this.btn22.setText(String.valueOf(buscarAlrededorMina(1,2,3)));
@@ -723,7 +691,6 @@ public class VentanaBuscaMinas extends javax.swing.JFrame {
         
        if(buscarMina()){
             mensaje(true);
-            this.btn23.setText("X");
             explosion();
         }else{
             this.btn23.setText(String.valueOf(buscarAlrededorMina(1,2,3)));
@@ -739,7 +706,6 @@ public class VentanaBuscaMinas extends javax.swing.JFrame {
         
        if(buscarMina()){
             mensaje(true);
-            this.btn24.setText("X");
             explosion();
         }else{
             this.btn24.setText(String.valueOf(buscarAlrededorMina(1,2,3)));
@@ -755,7 +721,6 @@ public class VentanaBuscaMinas extends javax.swing.JFrame {
         
        if(buscarMina()){
             mensaje(true);
-            this.btn25.setText("X");
             explosion();
         }else{
             this.btn25.setText(String.valueOf(buscarAlrededorMina(1,2,3)));
@@ -768,54 +733,17 @@ public class VentanaBuscaMinas extends javax.swing.JFrame {
     private void btnReiniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReiniciarActionPerformed
         reiniciar();
     }//GEN-LAST:event_btnReiniciarActionPerformed
-
-    private void cboxSeñalarMinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboxSeñalarMinaActionPerformed
-        if (this.marcarMina==true){
-            this.marcarMina=false;
-        }else{
-            this.marcarMina = true;
-        }
-    }//GEN-LAST:event_cboxSeñalarMinaActionPerformed
     
     private void cargaMinas(){
-        
-        //fila uno
-       /* this.minas [0][0] = 0;
-        this.minas [0][1] = 1;
-        this.minas [0][2] = 0;
-        this.minas [0][3] = 0;
-        this.minas [0][4] = 0;
-        
-        this.minas [1][0] = 0;
-        this.minas [1][1] = 0;
-        this.minas [1][2] = 1;
-        this.minas [1][3] = 0;
-        this.minas [1][4] = 0;
-        
-        this.minas [2][0] = 0;
-        this.minas [2][1] = 0;
-        this.minas [2][2] = 1;
-        this.minas [2][3] = 0;
-        this.minas [2][4] = 1;
-        
-        this.minas [3][0] = 0;
-        this.minas [3][1] = 1;
-        this.minas [3][2] = 0;
-        this.minas [3][3] = 1;
-        this.minas [3][4] = 0;
-        
-        this.minas [4][0] = 0;
-        this.minas [4][1] = 1;
-        this.minas [4][2] = 0;
-        this.minas [4][3] = 1;
-        this.minas [4][4] = 0;*/
         int numDeMinas = 0;
         
         for(int i=0; i<this.minas.length;i++){
             for(int j=0; j<this.minas[0].length;j++){
-                if(Math.random()<0.200000){
-                    this.minas[i][j]=1;
-                    numDeMinas = numDeMinas +1;
+                if(Math.random()<0.40000){
+                    if(numDeMinas<this.numMinas){
+                        this.minas[i][j]=1;
+                        numDeMinas = numDeMinas +1;
+                    }
                 }
             }
         }
@@ -927,6 +855,7 @@ public class VentanaBuscaMinas extends javax.swing.JFrame {
         limpiarMatrizMinas();
         limpiarBotones();
         cargaMinas();
+        activar(true);
     }
     
     private void limpiarMatrizMinas(){
@@ -937,144 +866,206 @@ public class VentanaBuscaMinas extends javax.swing.JFrame {
         }
     }
     
+    
     private void limpiarBotones(){
-        this.btn1.setText("");
-        this.btn2.setText("");
-        this.btn3.setText("");
-        this.btn4.setText("");
-        this.btn5.setText("");
-        this.btn6.setText("");
-        this.btn7.setText("");
-        this.btn8.setText("");
-        this.btn9.setText("");
-        this.btn10.setText("");
-        this.btn11.setText("");
-        this.btn12.setText("");
-        this.btn13.setText("");
-        this.btn14.setText("");
-        this.btn15.setText("");
-        this.btn16.setText("");
-        this.btn17.setText("");
-        this.btn18.setText("");
-        this.btn19.setText("");
-        this.btn20.setText("");
-        this.btn21.setText("");
-        this.btn22.setText("");
-        this.btn23.setText("");
-        this.btn24.setText("");
-        this.btn25.setText("");
+        btn1.setIcon(null);
+        btn2.setIcon(null);
+        btn3.setIcon(null);
+        btn4.setIcon(null);
+        btn5.setIcon(null);
+        btn6.setIcon(null);
+        btn7.setIcon(null);
+        btn8.setIcon(null);
+        btn9.setIcon(null);
+        btn10.setIcon(null);
+        btn11.setIcon(null);
+        btn12.setIcon(null);
+        btn13.setIcon(null);
+        btn14.setIcon(null);
+        btn15.setIcon(null);
+        btn16.setIcon(null);
+        btn17.setIcon(null);
+        btn18.setIcon(null);
+        btn19.setIcon(null);
+        btn20.setIcon(null);
+        btn21.setIcon(null);
+        btn22.setIcon(null);
+        btn23.setIcon(null);
+        btn24.setIcon(null);
+        btn25.setIcon(null);
+        this.btnReiniciar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buscaminas/icon_carita_feliz.jpg")));
+        
+        btn1.setText("");
+        btn2.setText("");
+        btn3.setText("");
+        btn4.setText("");
+        btn5.setText("");
+        btn6.setText("");
+        btn7.setText("");
+        btn8.setText("");
+        btn9.setText("");
+        btn10.setText("");
+        btn11.setText("");
+        btn12.setText("");
+        btn13.setText("");
+        btn14.setText("");
+        btn15.setText("");
+        btn16.setText("");
+        btn17.setText("");
+        btn18.setText("");
+        btn19.setText("");
+        btn20.setText("");
+        btn21.setText("");
+        btn22.setText("");
+        btn23.setText("");
+        btn24.setText("");
+        btn25.setText("");
     }
     
     private void explosion(){
+        this.btnReiniciar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buscaminas/caritatriste.jpeg")));
         if(this.minas [0][0] == 1){
-            this.btn1.setText("X");
+            btn1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buscaminas/bomb.png")));
         }
         
         if(this.minas [0][1] == 1){
-            this.btn2.setText("X");
+            btn2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buscaminas/bomb.png")));
         }
         
         if(this.minas [0][2] == 1){
-            this.btn3.setText("X");
+            btn3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buscaminas/bomb.png")));
         }
         
         if(this.minas [0][3] == 1){
-            this.btn4.setText("X");
+            btn4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buscaminas/bomb.png")));
         }
         
         if(this.minas [0][4] == 1){
-            this.btn5.setText("X");
+           btn5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buscaminas/bomb.png")));
         }
         
         //SEGUNDA FILA
         if(this.minas [1][0] == 1){
-            this.btn6.setText("X");
+            btn6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buscaminas/bomb.png")));
         }
         
         if(this.minas [1][1] == 1){
-            this.btn7.setText("X");
+           btn7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buscaminas/bomb.png")));
         }
         
         if(this.minas [1][2] == 1){
-            this.btn8.setText("X");
+            btn8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buscaminas/bomb.png")));
         }
         
         if(this.minas [1][3] == 1){
-            this.btn9.setText("X");
+           btn9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buscaminas/bomb.png")));
         }
         
         if(this.minas [1][4] == 1){
-            this.btn10.setText("X");
+            btn10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buscaminas/bomb.png")));
         }
         
         //TERCERA FILA
         if(this.minas [2][0] == 1){
-            this.btn11.setText("X");
+            btn11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buscaminas/bomb.png")));
         }
         
         if(this.minas [2][1] == 1){
-            this.btn12.setText("X");
+            btn12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buscaminas/bomb.png")));
         }
         
         if(this.minas [2][2] == 1){
-            this.btn13.setText("X");
+            btn13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buscaminas/bomb.png")));
         }
         
         if(this.minas [2][3] == 1){
-            this.btn14.setText("X");
+            btn14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buscaminas/bomb.png")));
         }
         
         if(this.minas [2][4] == 1){
-            this.btn15.setText("X");
+           btn15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buscaminas/bomb.png")));
         }
         
         //CUARTO FILA
         if(this.minas [3][0] == 1){
-            this.btn16.setText("X");
+            btn16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buscaminas/bomb.png")));
         }
         
         if(this.minas [3][1] == 1){
-            this.btn17.setText("X");
+            btn17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buscaminas/bomb.png")));
         }
         
         if(this.minas [3][2] == 1){
-            this.btn18.setText("X");
+            btn18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buscaminas/bomb.png")));
         }
         
         if(this.minas [3][3] == 1){
-            this.btn19.setText("X");
+           btn19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buscaminas/bomb.png")));
         }
         
         if(this.minas [3][4] == 1){
-            this.btn20.setText("X");
+            btn20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buscaminas/bomb.png")));
         }
         
         //QUINTO FILA
         if(this.minas [4][0] == 1){
-            this.btn21.setText("X");
+            btn21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buscaminas/bomb.png")));
         }
         
         if(this.minas [4][1] == 1){
-            this.btn22.setText("X");
+           btn22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buscaminas/bomb.png")));
         }
         
         if(this.minas [4][2] == 1){
-            this.btn23.setText("X");
+            btn23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buscaminas/bomb.png")));
         }
         
         if(this.minas [4][3] == 1){
-            this.btn24.setText("X");
+            btn24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buscaminas/bomb.png")));
         }
         
         if(this.minas [4][4] == 1){
-            this.btn25.setText("X");
+            btn25.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buscaminas/bomb.png")));
         }
+        
+        activar(false);
     }
     
     private void monitorearResultado(){
         if(this.contador==(25-Integer.parseInt(this.txtMarcadorMinas.getText()))){
             JOptionPane.showMessageDialog(null,"Felicidades, Eres un ganador","Busca minas",JOptionPane.INFORMATION_MESSAGE);
         }
+    }
+    
+    private void activar(boolean activar){
+        this.btn1.setEnabled(activar);
+        this.btn2.setEnabled(activar);
+        this.btn3.setEnabled(activar);
+        this.btn4.setEnabled(activar);
+        this.btn5.setEnabled(activar);
+        this.btn6.setEnabled(activar);
+        this.btn7.setEnabled(activar);
+        this.btn8.setEnabled(activar);
+        this.btn9.setEnabled(activar);
+        this.btn10.setEnabled(activar);
+        this.btn11.setEnabled(activar);
+        this.btn12.setEnabled(activar);
+        this.btn13.setEnabled(activar);
+        this.btn14.setEnabled(activar);
+        this.btn15.setEnabled(activar);
+        this.btn16.setEnabled(activar);
+        this.btn17.setEnabled(activar);
+        this.btn18.setEnabled(activar);
+        this.btn19.setEnabled(activar);
+        this.btn20.setEnabled(activar);
+        this.btn21.setEnabled(activar);
+        this.btn22.setEnabled(activar);
+        this.btn23.setEnabled(activar);
+        this.btn24.setEnabled(activar);
+        this.btn25.setEnabled(activar);
+        
+        this.txtMarcadorMinas.setEnabled(false);
+        this.txtMarcadorTiempo.setEnabled(false);
     }
     /**
      * @param args the command line arguments
@@ -1138,7 +1129,6 @@ public class VentanaBuscaMinas extends javax.swing.JFrame {
     private javax.swing.JButton btn8;
     private javax.swing.JButton btn9;
     private javax.swing.JButton btnReiniciar;
-    private javax.swing.JCheckBox cboxSeñalarMina;
     private javax.swing.JTextField txtMarcadorMinas;
     private javax.swing.JTextField txtMarcadorTiempo;
     // End of variables declaration//GEN-END:variables
