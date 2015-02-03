@@ -6,13 +6,15 @@
 
 package buscaminas;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author certificacion7
  */
-public class VentanaBuscaMinas extends javax.swing.JFrame {
+public class VentanaBuscaMinas extends javax.swing.JFrame implements Runnable  {
 
     private int minas[][];
     private int fila;
@@ -21,6 +23,10 @@ public class VentanaBuscaMinas extends javax.swing.JFrame {
     private boolean marcarMina;
     private int contador;
     private int numMinas;
+    
+    Thread timer;
+    float tiempo;
+    
    
     public VentanaBuscaMinas() {
         initComponents();
@@ -31,8 +37,14 @@ public class VentanaBuscaMinas extends javax.swing.JFrame {
         this.marcarMina=false;
         this.contador=0;
         this.numMinas = 6;
+        reiniciar();
         
         cargaMinas();
+        
+        tiempo = 0;
+        timer = new Thread(this);
+        timer.start();
+        
     } 
 
     /**
@@ -228,6 +240,7 @@ public class VentanaBuscaMinas extends javax.swing.JFrame {
             }
         });
 
+        txtMarcadorTiempo.setEditable(false);
         txtMarcadorTiempo.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
 
         btnReiniciar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buscaminas/icon_carita_feliz.jpg"))); // NOI18N
@@ -1067,6 +1080,25 @@ public class VentanaBuscaMinas extends javax.swing.JFrame {
         this.txtMarcadorMinas.setEnabled(false);
         this.txtMarcadorTiempo.setEnabled(false);
     }
+    
+    
+    @Override
+    public void run() {
+        while(true){
+            this.tiempo++;
+            int minutos = (int)(this.tiempo / 60f);
+            int segundos = (int)(this.tiempo % 60f);
+            
+            this.txtMarcadorTiempo.setText(minutos+":"+segundos);
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException ex) {
+                System.out.println(ex.getMessage());
+            }
+            
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -1101,6 +1133,7 @@ public class VentanaBuscaMinas extends javax.swing.JFrame {
             }
         });
     }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn1;
@@ -1132,4 +1165,6 @@ public class VentanaBuscaMinas extends javax.swing.JFrame {
     private javax.swing.JTextField txtMarcadorMinas;
     private javax.swing.JTextField txtMarcadorTiempo;
     // End of variables declaration//GEN-END:variables
+
+    
 }
