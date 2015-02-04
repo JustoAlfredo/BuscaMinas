@@ -28,7 +28,7 @@ public class VentanaBuscaMinas extends javax.swing.JFrame implements Runnable  {
     float tiempo;
     
    
-    public VentanaBuscaMinas() {
+    public VentanaBuscaMinas() throws InterruptedException {
         initComponents();
         this.minas = new int [5][5];
         this.fila = -1;
@@ -44,7 +44,6 @@ public class VentanaBuscaMinas extends javax.swing.JFrame implements Runnable  {
         tiempo = 0;
         timer = new Thread(this);
         timer.start();
-        
     } 
 
     /**
@@ -375,7 +374,13 @@ public class VentanaBuscaMinas extends javax.swing.JFrame implements Runnable  {
             mensaje(true);
             explosion();
         }else{
+            
             this.btn1.setText(String.valueOf(buscarAlrededorMina(0,2,3)));
+            if (buscarAlrededorMina(0,2,3)==0){
+                clicks(this.fila,this.columna+1);
+                clicks(this.fila+1,this.columna);
+                clicks(this.fila+1,this.columna+1);
+            }
             this.cantidadMinas = 0;
             this.contador = this.contador +1;
             monitorearResultado();
@@ -392,6 +397,13 @@ public class VentanaBuscaMinas extends javax.swing.JFrame implements Runnable  {
             explosion();
         }else{
             this.btn2.setText(String.valueOf(buscarAlrededorMina(0,2,3)));
+            if (buscarAlrededorMina(0,2,3)==0){
+                clicks(this.fila,this.columna-1);
+                clicks(this.fila,this.columna+1);
+                clicks(this.fila+1,this.columna-1);
+                clicks(this.fila+1,this.columna);
+                clicks(this.fila+1,this.columna+1);
+            }
             this.cantidadMinas = 0;
             this.contador = this.contador +1;
             monitorearResultado();
@@ -407,6 +419,13 @@ public class VentanaBuscaMinas extends javax.swing.JFrame implements Runnable  {
             explosion();
         }else{
             this.btn3.setText(String.valueOf(buscarAlrededorMina(0,2,3)));
+            if (buscarAlrededorMina(0,2,3)==0){
+                clicks(this.fila,this.columna-1);
+                clicks(this.fila,this.columna+1);
+                clicks(this.fila+1,this.columna-1);
+                clicks(this.fila+1,this.columna);
+                clicks(this.fila+1,this.columna+1);
+            }
             this.cantidadMinas = 0;
             this.contador = this.contador +1;
             monitorearResultado();
@@ -422,6 +441,13 @@ public class VentanaBuscaMinas extends javax.swing.JFrame implements Runnable  {
             explosion();
         }else{
             this.btn4.setText(String.valueOf(buscarAlrededorMina(0,2,3)));
+            if (buscarAlrededorMina(0,2,3)==0){
+                clicks(this.fila,this.columna-1);
+                clicks(this.fila,this.columna+1);
+                clicks(this.fila+1,this.columna-1);
+                clicks(this.fila+1,this.columna);
+                clicks(this.fila+1,this.columna+1);
+            }
             this.cantidadMinas = 0;
             this.contador = this.contador +1;
             monitorearResultado();
@@ -437,6 +463,11 @@ public class VentanaBuscaMinas extends javax.swing.JFrame implements Runnable  {
             explosion();
         }else{
             this.btn5.setText(String.valueOf(buscarAlrededorMina(0,2,3)));
+            if (buscarAlrededorMina(0,2,3)==0){
+                clicks(this.fila,this.columna-1);
+                clicks(this.fila+1,this.columna-1);
+                clicks(this.fila+1,this.columna);
+            }
             this.cantidadMinas = 0;
             this.contador = this.contador +1;
             monitorearResultado();
@@ -452,6 +483,11 @@ public class VentanaBuscaMinas extends javax.swing.JFrame implements Runnable  {
             explosion();
         }else{
             this.btn6.setText(String.valueOf(buscarAlrededorMina(1,2,3)));
+            if (buscarAlrededorMina(1,2,3)==0){
+                clicks(this.fila,this.columna+1);
+                clicks(this.fila+1,this.columna);
+                clicks(this.fila+1,this.columna+1);
+            }
             this.cantidadMinas = 0;
             this.contador = this.contador +1;
             monitorearResultado();
@@ -467,6 +503,13 @@ public class VentanaBuscaMinas extends javax.swing.JFrame implements Runnable  {
             explosion();
         }else{
             this.btn7.setText(String.valueOf(buscarAlrededorMina(1,2,3)));
+            if (buscarAlrededorMina(1,2,3)==0){
+                clicks(this.fila,this.columna-1);
+                clicks(this.fila,this.columna+1);
+                clicks(this.fila+1,this.columna-1);
+                clicks(this.fila+1,this.columna);
+                clicks(this.fila+1,this.columna+1);
+            }
             this.cantidadMinas = 0;
             this.contador = this.contador +1;
             monitorearResultado();
@@ -482,6 +525,13 @@ public class VentanaBuscaMinas extends javax.swing.JFrame implements Runnable  {
             explosion();
         }else{
             this.btn8.setText(String.valueOf(buscarAlrededorMina(1,2,3)));
+            if (buscarAlrededorMina(1,2,3)==0){
+                clicks(this.fila,this.columna-1);
+                clicks(this.fila,this.columna+1);
+                clicks(this.fila+1,this.columna-1);
+                clicks(this.fila+1,this.columna);
+                clicks(this.fila+1,this.columna+1);
+            }
             this.cantidadMinas = 0;
             this.contador = this.contador +1;
             monitorearResultado();
@@ -497,6 +547,13 @@ public class VentanaBuscaMinas extends javax.swing.JFrame implements Runnable  {
             explosion();
         }else{
             this.btn9.setText(String.valueOf(buscarAlrededorMina(1,2,3)));
+            if (buscarAlrededorMina(1,2,3)==0){
+                clicks(this.fila,this.columna-1);
+                clicks(this.fila,this.columna+1);
+                clicks(this.fila+1,this.columna-1);
+                clicks(this.fila+1,this.columna);
+                clicks(this.fila+1,this.columna+1);
+            }
             this.cantidadMinas = 0;
             this.contador = this.contador +1;
             monitorearResultado();
@@ -512,6 +569,11 @@ public class VentanaBuscaMinas extends javax.swing.JFrame implements Runnable  {
             explosion();
         }else{
             this.btn10.setText(String.valueOf(buscarAlrededorMina(1,2,3)));
+            if (buscarAlrededorMina(1,2,3)==0){
+                clicks(this.fila,this.columna-1);
+                clicks(this.fila+1,this.columna-1);
+                clicks(this.fila+1,this.columna);
+            }
             this.cantidadMinas = 0;
             this.contador = this.contador +1;
             monitorearResultado();
@@ -527,6 +589,11 @@ public class VentanaBuscaMinas extends javax.swing.JFrame implements Runnable  {
             explosion();
         }else{
             this.btn11.setText(String.valueOf(buscarAlrededorMina(1,2,3)));
+            if (buscarAlrededorMina(1,2,3)==0){
+                clicks(this.fila,this.columna+1);
+                clicks(this.fila+1,this.columna);
+                clicks(this.fila+1,this.columna+1);
+            }
             this.cantidadMinas = 0;
             this.contador = this.contador +1;
             monitorearResultado();
@@ -542,6 +609,13 @@ public class VentanaBuscaMinas extends javax.swing.JFrame implements Runnable  {
             explosion();
         }else{
             this.btn12.setText(String.valueOf(buscarAlrededorMina(1,2,3)));
+            if (buscarAlrededorMina(1,2,3)==0){
+                clicks(this.fila,this.columna-1);
+                clicks(this.fila,this.columna+1);
+                clicks(this.fila+1,this.columna-1);
+                clicks(this.fila+1,this.columna);
+                clicks(this.fila+1,this.columna+1);
+            }
             this.cantidadMinas = 0;
             this.contador = this.contador +1;
             monitorearResultado();
@@ -557,6 +631,13 @@ public class VentanaBuscaMinas extends javax.swing.JFrame implements Runnable  {
             explosion();
         }else{
             this.btn13.setText(String.valueOf(buscarAlrededorMina(1,2,3)));
+            if (buscarAlrededorMina(1,2,3)==0){
+                clicks(this.fila,this.columna-1);
+                clicks(this.fila,this.columna+1);
+                clicks(this.fila+1,this.columna-1);
+                clicks(this.fila+1,this.columna);
+                clicks(this.fila+1,this.columna+1);
+            }
             this.cantidadMinas = 0;
             this.contador = this.contador +1;
             monitorearResultado();
@@ -572,6 +653,13 @@ public class VentanaBuscaMinas extends javax.swing.JFrame implements Runnable  {
             explosion();
         }else{
             this.btn14.setText(String.valueOf(buscarAlrededorMina(1,2,3)));
+            if (buscarAlrededorMina(1,2,3)==0){
+                clicks(this.fila,this.columna-1);
+                clicks(this.fila,this.columna+1);
+                clicks(this.fila+1,this.columna-1);
+                clicks(this.fila+1,this.columna);
+                clicks(this.fila+1,this.columna+1);
+            }
             this.cantidadMinas = 0;
             this.contador = this.contador +1;
             monitorearResultado();
@@ -587,6 +675,11 @@ public class VentanaBuscaMinas extends javax.swing.JFrame implements Runnable  {
             explosion();
         }else{
             this.btn15.setText(String.valueOf(buscarAlrededorMina(1,2,3)));
+            if (buscarAlrededorMina(1,2,3)==0){
+                clicks(this.fila,this.columna-1);
+                clicks(this.fila+1,this.columna-1);
+                clicks(this.fila+1,this.columna);
+            }
             this.cantidadMinas = 0;
             this.contador = this.contador +1;
             monitorearResultado();
@@ -602,6 +695,11 @@ public class VentanaBuscaMinas extends javax.swing.JFrame implements Runnable  {
             explosion();
         }else{
             this.btn16.setText(String.valueOf(buscarAlrededorMina(1,2,3)));
+            if (buscarAlrededorMina(1,2,3)==0){
+                clicks(this.fila,this.columna+1);
+                clicks(this.fila+1,this.columna);
+                clicks(this.fila+1,this.columna+1);
+            }
             this.cantidadMinas = 0;
             this.contador = this.contador +1;
             monitorearResultado();
@@ -617,6 +715,13 @@ public class VentanaBuscaMinas extends javax.swing.JFrame implements Runnable  {
             explosion();
         }else{
             this.btn17.setText(String.valueOf(buscarAlrededorMina(1,2,3)));
+            if (buscarAlrededorMina(1,2,3)==0){
+                clicks(this.fila,this.columna-1);
+                clicks(this.fila,this.columna+1);
+                clicks(this.fila+1,this.columna-1);
+                clicks(this.fila+1,this.columna);
+                clicks(this.fila+1,this.columna+1);
+            }
             this.cantidadMinas = 0;
             this.contador = this.contador +1;
             monitorearResultado();
@@ -632,6 +737,13 @@ public class VentanaBuscaMinas extends javax.swing.JFrame implements Runnable  {
             explosion();
         }else{
             this.btn18.setText(String.valueOf(buscarAlrededorMina(1,2,3)));
+            if (buscarAlrededorMina(1,2,3)==0){
+                clicks(this.fila,this.columna-1);
+                clicks(this.fila,this.columna+1);
+                clicks(this.fila+1,this.columna-1);
+                clicks(this.fila+1,this.columna);
+                clicks(this.fila+1,this.columna+1);
+            }
             this.cantidadMinas = 0;
             this.contador = this.contador +1;
             monitorearResultado();
@@ -647,6 +759,13 @@ public class VentanaBuscaMinas extends javax.swing.JFrame implements Runnable  {
             explosion();
         }else{
             this.btn19.setText(String.valueOf(buscarAlrededorMina(1,2,3)));
+            if (buscarAlrededorMina(1,2,3)==0){
+                clicks(this.fila,this.columna-1);
+                clicks(this.fila,this.columna+1);
+                clicks(this.fila+1,this.columna-1);
+                clicks(this.fila+1,this.columna);
+                clicks(this.fila+1,this.columna+1);
+            }
             this.cantidadMinas = 0;
             this.contador = this.contador +1;
             monitorearResultado();
@@ -662,6 +781,11 @@ public class VentanaBuscaMinas extends javax.swing.JFrame implements Runnable  {
             explosion();
         }else{
             this.btn20.setText(String.valueOf(buscarAlrededorMina(1,2,3)));
+            if (buscarAlrededorMina(1,2,3)==0){
+                clicks(this.fila,this.columna-1);
+                clicks(this.fila+1,this.columna-1);
+                clicks(this.fila+1,this.columna);
+            }
             this.cantidadMinas = 0;
             this.contador = this.contador +1;
             monitorearResultado();
@@ -677,6 +801,11 @@ public class VentanaBuscaMinas extends javax.swing.JFrame implements Runnable  {
             explosion();
         }else{
             this.btn21.setText(String.valueOf(buscarAlrededorMina(1,2,3)));
+            if (buscarAlrededorMina(1,2,3)==0){
+                clicks(this.fila,this.columna+1);
+                clicks(this.fila-1,this.columna);
+                clicks(this.fila-1,this.columna+1);
+            }
             this.cantidadMinas = 0;
             this.contador = this.contador +1;
             monitorearResultado();
@@ -692,6 +821,13 @@ public class VentanaBuscaMinas extends javax.swing.JFrame implements Runnable  {
             explosion();
         }else{
             this.btn22.setText(String.valueOf(buscarAlrededorMina(1,2,3)));
+            if (buscarAlrededorMina(1,2,3)==0){
+                clicks(this.fila,this.columna-1);
+                clicks(this.fila,this.columna+1);
+                clicks(this.fila-1,this.columna-1);
+                clicks(this.fila-1,this.columna);
+                clicks(this.fila-1,this.columna+1);
+            }
             this.cantidadMinas = 0;
             this.contador = this.contador +1;
             monitorearResultado();
@@ -707,6 +843,13 @@ public class VentanaBuscaMinas extends javax.swing.JFrame implements Runnable  {
             explosion();
         }else{
             this.btn23.setText(String.valueOf(buscarAlrededorMina(1,2,3)));
+            if (buscarAlrededorMina(1,2,3)==0){
+                clicks(this.fila,this.columna-1);
+                clicks(this.fila,this.columna+1);
+                clicks(this.fila-1,this.columna-1);
+                clicks(this.fila-1,this.columna);
+                clicks(this.fila-1,this.columna+1);
+            }
             this.cantidadMinas = 0;
             this.contador = this.contador +1;
             monitorearResultado();
@@ -722,6 +865,14 @@ public class VentanaBuscaMinas extends javax.swing.JFrame implements Runnable  {
             explosion();
         }else{
             this.btn24.setText(String.valueOf(buscarAlrededorMina(1,2,3)));
+            if (buscarAlrededorMina(1,2,3)==0){
+                clicks(this.fila,this.columna-1);
+                clicks(this.fila,this.columna+1);
+                clicks(this.fila-1,this.columna-1);
+                clicks(this.fila-1,this.columna+1);
+                clicks(this.fila-1,this.columna);
+        
+            }
             this.cantidadMinas = 0;
             this.contador = this.contador +1;
             monitorearResultado();
@@ -737,6 +888,12 @@ public class VentanaBuscaMinas extends javax.swing.JFrame implements Runnable  {
             explosion();
         }else{
             this.btn25.setText(String.valueOf(buscarAlrededorMina(1,2,3)));
+            if (buscarAlrededorMina(1,2,3)==0){
+                clicks(this.fila,this.columna-1);
+                clicks(this.fila-1,this.columna-1);
+                clicks(this.fila-1,this.columna);
+                
+            }
             this.cantidadMinas = 0;
             this.contador = this.contador +1;
             monitorearResultado();
@@ -859,6 +1016,111 @@ public class VentanaBuscaMinas extends javax.swing.JFrame implements Runnable  {
         if (mina == true){
             JOptionPane.showMessageDialog(null,"Perdio","Busca minas",JOptionPane.ERROR_MESSAGE);
         }
+    }
+    
+    private void clicks(int f,int c){
+        if (f == 0 & c ==0){
+            this.btn1.doClick();
+        }
+        if (f == 0 & c ==1){
+            this.btn2.doClick();
+        }
+        
+        if (f == 0 & c ==2){
+            this.btn3.doClick();
+        }
+        
+        if (f == 0 & c ==3){
+            this.btn4.doClick();
+        }
+        
+        if (f == 0 & c ==4){
+            this.btn5.doClick();
+        }
+        
+        //segunda fila
+        
+        if (f == 1 & c ==0){
+            this.btn6.doClick();
+        }
+        if (f == 1 & c ==1){
+            this.btn7.doClick();
+        }
+        
+        if (f == 1 & c ==2){
+            this.btn8.doClick();
+        }
+        
+        if (f == 1 & c ==3){
+            this.btn9.doClick();
+        }
+        
+        if (f == 1 & c ==4){
+            this.btn10.doClick();
+        }
+        
+        //fila tres
+        
+        if (f == 2 & c ==0){
+            this.btn11.doClick();
+        }
+        if (f == 2 & c ==1){
+            this.btn12.doClick();
+        }
+        
+        if (f == 2 & c ==2){
+            this.btn13.doClick();
+        }
+        
+        if (f == 2 & c ==3){
+            this.btn14.doClick();
+        }
+        
+        if (f == 2 & c ==4){
+            this.btn15.doClick();
+        }
+        
+        //fila cuatro
+        if (f == 3 & c ==0){
+            this.btn16.doClick();
+        }
+        if (f == 3 & c ==1){
+            this.btn17.doClick();
+        }
+        
+        if (f == 3 & c ==2){
+            this.btn18.doClick();
+        }
+        
+        if (f == 3 & c ==3){
+            this.btn19.doClick();
+        }
+        
+        if (f == 3 & c ==4){
+            this.btn20.doClick();
+        }
+        
+        //fila cinco
+        if (f == 4 & c ==0){
+            this.btn21.doClick();
+        }
+        if (f == 4 & c ==1){
+            this.btn22.doClick();
+        }
+        
+        if (f == 4 & c ==2){
+            this.btn23.doClick();
+        }
+        
+        if (f == 4 & c ==3){
+            this.btn24.doClick();
+        }
+        
+        if (f == 4 & c ==4){
+            this.btn25.doClick();
+        }
+        
+       
     }
     
     private void reiniciar(){
@@ -1129,7 +1391,11 @@ public class VentanaBuscaMinas extends javax.swing.JFrame implements Runnable  {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VentanaBuscaMinas().setVisible(true);
+                try {
+                    new VentanaBuscaMinas().setVisible(true);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(VentanaBuscaMinas.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
