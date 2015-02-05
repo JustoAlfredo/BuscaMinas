@@ -376,7 +376,7 @@ public class VentanaBuscaMinas extends javax.swing.JFrame implements Runnable  {
         }else{
             
             this.btn1.setText(String.valueOf(buscarAlrededorMina(0,2,3)));
-            if (buscarAlrededorMina(0,2,3)==0){
+            if (buscarAlrededorMina(0,2,3)==0 ){
                 clicks(this.fila,this.columna+1);
                 clicks(this.fila+1,this.columna);
                 clicks(this.fila+1,this.columna+1);
